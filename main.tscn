@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl4ax1hqnsxgr"]
+[gd_scene load_steps=9 format=3 uid="uid://dl4ax1hqnsxgr"]
 
 [ext_resource type="PackedScene" uid="uid://dooiwfdjewl7d" path="res://Player.tscn" id="1_mterw"]
 [ext_resource type="Texture2D" uid="uid://cgqg2o4d8dsb5" path="res://imgs/tile.png" id="2_20an6"]
+[ext_resource type="Texture2D" uid="uid://w32aabokfhtp" path="res://imgs/seta2.png" id="3_eitk1"]
+[ext_resource type="Texture2D" uid="uid://ds4cjbacumyog" path="res://imgs/seta.png" id="3_np3qt"]
+[ext_resource type="Script" path="res://TouchScreenButton.gd" id="3_pav3q"]
+[ext_resource type="Texture2D" uid="uid://d0okki5jjoik4" path="res://imgs/seta3.png" id="6_w8ith"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebpkn"]
 size = Vector2(263, 247)
@@ -12,7 +16,12 @@ size = Vector2(54, 371)
 [node name="Main" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_mterw")]
-position = Vector2(145, 418)
+position = Vector2(203, 481)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(9, 9)
+ignore_rotation = false
+limit_smoothed = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(12, 37)
@@ -28,8 +37,8 @@ scale = Vector2(272.25, 255.75)
 
 [node name="TextureRect" type="TextureRect" parent="StaticBody2D"]
 offset_left = 35.0
-offset_top = 487.0
-offset_right = 307.0
+offset_top = 486.0
+offset_right = 302.0
 offset_bottom = 745.0
 texture = ExtResource("2_20an6")
 expand_mode = 2
@@ -99,17 +108,41 @@ scale = Vector2(55.25, 371.75)
 [node name="TextureRect" type="TextureRect" parent="StaticBody2D4"]
 offset_left = -190.0
 offset_top = -402.0
-offset_right = -134.0
+offset_right = -132.0
 offset_bottom = -33.0
 texture = ExtResource("2_20an6")
 expand_mode = 1
 stretch_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="StaticBody2D4"]
-offset_left = -19.0
+offset_left = -22.0
 offset_top = -290.0
 offset_right = 31.0
 offset_bottom = 81.0
 texture = ExtResource("2_20an6")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(28, 567)
+scale = Vector2(8.53125, 8.125)
+texture_normal = ExtResource("3_eitk1")
+action = "ui_left"
+visibility_mode = 1
+script = ExtResource("3_pav3q")
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(1029, 442)
+scale = Vector2(10.0625, 7.96875)
+texture_normal = ExtResource("6_w8ith")
+action = "ui_accept"
+visibility_mode = 1
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(318, 567)
+scale = Vector2(8.53125, 8.125)
+texture_normal = ExtResource("3_np3qt")
+action = "ui_right"
+visibility_mode = 1

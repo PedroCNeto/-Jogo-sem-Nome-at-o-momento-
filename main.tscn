@@ -139,10 +139,12 @@ scale = Vector2(10.0625, 7.96875)
 texture_normal = ExtResource("6_w8ith")
 action = "ui_accept"
 visibility_mode = 1
+script = ExtResource("3_pav3q")
 
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(318, 567)
+position = Vector2(317, 567)
 scale = Vector2(8.53125, 8.125)
 texture_normal = ExtResource("3_np3qt")
 action = "ui_right"
 visibility_mode = 1
+script = ExtResource("3_pav3q")

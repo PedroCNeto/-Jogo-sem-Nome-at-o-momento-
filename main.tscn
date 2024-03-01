@@ -13,24 +13,25 @@
 size = Vector2(263, 247)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2rd6"]
-size = Vector2(54, 371)
+size = Vector2(54, 374)
 
 [sub_resource type="Curve2D" id="Curve2D_l7mf5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -452, -37, 0, 0, 0, 0, -452, 979, 0, 0, 0, 0, 1605, 1010, 0, 0, 0, 0, 1644, -37, 0, 0, 0, 0, -452, -37, 0, 0, 0, 0, -428, -45, 0, 0, 0, 0, -452, -37, 0, 0, 0, 0, -445, -38, 0, 0, 0, 0, -452, -37)
+"points": PackedVector2Array(0, 0, 0, 0, -629.444, -48.5958, 0, 0, 0, 0, -629.444, 1020.07, 0, 0, 0, 0, 1605, 1010, 0, 0, 0, 0, 1644, -37, 0, 0, 0, 0, -640.253, -42.1234, 0, 0, 0, 0, -634.848, -48.5958, 0, 0, 0, 0, -634.848, -44.2808, 0, 0, 0, 0, -615.933, 481.421, 0, 0, 0, 0, -632.146, -48.5958, 0, 0, 0, 0, -642.955, -50.7532)
 }
-point_count = 9
+point_count = 10
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ykx8e")
 mob_scene = ExtResource("2_3v8u4")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_mterw")]
-position = Vector2(203, 481)
+position = Vector2(185, 481)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(9, 9)
+position = Vector2(21, 31)
 ignore_rotation = false
+zoom = Vector2(1.2, 1.2)
 limit_smoothed = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -100,7 +101,7 @@ stretch_mode = 6
 position = Vector2(710, 477)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(4.5, -100.5)
+position = Vector2(4.5, -102)
 shape = SubResource("RectangleShape2D_t2rd6")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D4"]
@@ -160,15 +161,16 @@ visibility_mode = 1
 script = ExtResource("3_pav3q")
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(12, 37)
+position = Vector2(61.8149, -240.427)
+scale = Vector2(1.11021, 1.39052)
 curve = SubResource("Curve2D_l7mf5")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-452, -37)
+position = Vector2(-629.444, -48.5958)
 rotation = 1.5708
 
 [node name="Mobtimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.527
 
 [node name="Enemy" parent="." instance=ExtResource("2_3v8u4")]
 

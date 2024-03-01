@@ -7,6 +7,7 @@ var can_jump
 var coyote_time = 0
 var is_in_wall
 var jumped_while_on_wall
+signal hit
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -63,3 +64,7 @@ func _physics_process(delta):
 
 
 	move_and_slide()
+
+
+
+

@@ -1,25 +1,29 @@
 extends Node2D
 @export var mob_scene: PackedScene
-
+signal MoedaTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Mobtimer.start()
 	$CharacterBody2D/Camera2D.align()
-
+	$Moeda.connect("moedaPega", test)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for index in $CharacterBody2D.get_slide_collision_count():
-		var collision = $CharacterBody2D.get_slide_collision(index)
+		var collision = $CharacterBody2D.get_slide_collision(index)	
 		var body = collision.get_collider()
 		if body is RigidBody2D:
 			get_tree().quit()
 
+func test():
+	$Moeda/CollisionShape2D.set_deferred("disabled", true)
+	$Moeda/Sprite2D.set_deferred("visible", false)
+	print('batata')
 
 
 func _on_mobtimer_timeout():
-	print("maluvoswiky")
+
 
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
@@ -45,6 +49,8 @@ func _on_mobtimer_timeout():
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
 	if $Mobtimer.wait_time > 0.01:
-		print($Mobtimer.wait_time)
 		$Mobtimer.wait_time = $Mobtimer.wait_time - ($Mobtimer.wait_time * 0.01)
+
+
+
 

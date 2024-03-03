@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl4ax1hqnsxgr"]
+[gd_scene load_steps=13 format=3 uid="uid://dl4ax1hqnsxgr"]
 
 [ext_resource type="PackedScene" uid="uid://dooiwfdjewl7d" path="res://Player.tscn" id="1_mterw"]
 [ext_resource type="Script" path="res://main.gd" id="1_ykx8e"]
@@ -18,16 +18,9 @@ size = Vector2(54, 374)
 
 [sub_resource type="Curve2D" id="Curve2D_l7mf5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -910.472, -103.407, 0, 0, 0, 0, -920.38, 1021.84, 0, 0, 0, 0, 2122.29, 1026.58, 0, 0, 0, 0, 2131.3, 481.108, 0, 0, 0, 0, 2132.2, -95.7159, 0, 0, 0, 0, -879.847, -80.3339, 0, 0, 0, 0, -898.762, -95.7159, 0, 0, 0, 0, -856.428, -88.0249, 0, 0, 0, 0, -880.748, -90.3914, 0, 0, 0, 0, -847.421, -67.3184, 0, 0, 0, 0, -881.648, -92.7578)
+"points": PackedVector2Array(0, 0, 0, 0, -629.444, -48.5958, 0, 0, 0, 0, -629.444, 1020.07, 0, 0, 0, 0, 1605, 1010, 0, 0, 0, 0, 1644, -37, 0, 0, 0, 0, -640.253, -42.1234, 0, 0, 0, 0, -634.848, -48.5958, 0, 0, 0, 0, -634.848, -44.2808, 0, 0, 0, 0, -615.933, 481.421, 0, 0, 0, 0, -632.146, -48.5958, 0, 0, 0, 0, -642.955, -50.7532)
 }
-point_count = 11
-
-[sub_resource type="LabelSettings" id="LabelSettings_vhy0y"]
-font_size = 32
-outline_size = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1w67d"]
-size = Vector2(3495.5, 155)
+point_count = 10
 
 [node name="Main" type="Node2D"]
 position = Vector2(-41, -23)
@@ -170,13 +163,13 @@ visibility_mode = 1
 script = ExtResource("3_pav3q")
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(61.8149, -546.212)
-scale = Vector2(1.11021, 1.69029)
+position = Vector2(61.8149, -240.427)
+scale = Vector2(1.11021, 1.39052)
 curve = SubResource("Curve2D_l7mf5")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-910.472, -103.407)
-rotation = 1.5796
+position = Vector2(-629.444, -48.5958)
+rotation = 1.5708
 
 [node name="Mobtimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -192,36 +185,7 @@ position = Vector2(992, 487)
 [node name="Moeda3" parent="." instance=ExtResource("9_nolo5")]
 position = Vector2(602, 530)
 
-[node name="HUD" type="CanvasLayer" parent="."]
-offset = Vector2(640, 20)
-transform = Transform2D(1, 0, 0, 1, 640, 20)
-
-[node name="Score" type="Label" parent="HUD"]
-offset_left = -53.0
-offset_top = -13.0
-offset_right = 59.0
-offset_bottom = 10.0
-label_settings = SubResource("LabelSettings_vhy0y")
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="GameTime" type="Timer" parent="."]
-autostart = true
-
-[node name="MapEnds" type="Node2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="MapEnds"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapEnds/Area2D"]
-position = Vector2(697.25, 1128)
-shape = SubResource("RectangleShape2D_1w67d")
-
 [connection signal="timeout" from="Mobtimer" to="." method="_on_mobtimer_timeout"]
 [connection signal="body_entered" from="Moeda" to="Moeda" method="_on_body_entered"]
-[connection signal="pegouMoeda" from="Moeda" to="." method="_on_moeda_pegou_moeda"]
 [connection signal="body_entered" from="Moeda2" to="Moeda2" method="_on_body_entered"]
-[connection signal="pegouMoeda" from="Moeda2" to="." method="_on_moeda_2_pegou_moeda"]
 [connection signal="body_entered" from="Moeda3" to="Moeda3" method="_on_body_entered"]
-[connection signal="pegouMoeda" from="Moeda3" to="." method="_on_moeda_3_pegou_moeda"]
-[connection signal="timeout" from="GameTime" to="." method="_on_game_time_timeout"]
-[connection signal="body_entered" from="MapEnds/Area2D" to="." method="_on_area_2d_body_entered"]

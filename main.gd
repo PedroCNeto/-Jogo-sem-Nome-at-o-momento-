@@ -1,25 +1,27 @@
 extends Node2D
 @export var mob_scene: PackedScene
-signal MoedaTimer
+var pontos = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Mobtimer.start()
 	$CharacterBody2D/Camera2D.align()
-	$Moeda.connect("moedaPega", test)
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$HUD/Score.text = "Pontos: " + str(pontos) 
+	
 	for index in $CharacterBody2D.get_slide_collision_count():
 		var collision = $CharacterBody2D.get_slide_collision(index)	
 		var body = collision.get_collider()
 		if body is RigidBody2D:
-			get_tree().quit()
+			if get_tree():
+				get_tree().reload_current_scene()
 
-func test():
-	$Moeda/CollisionShape2D.set_deferred("disabled", true)
-	$Moeda/Sprite2D.set_deferred("visible", false)
-	print('batata')
+
+
 
 
 func _on_mobtimer_timeout():
@@ -54,3 +56,25 @@ func _on_mobtimer_timeout():
 
 
 
+
+
+func _on_game_time_timeout():
+	pontos+=1
+
+
+func _on_moeda_pegou_moeda():
+	pontos+=10
+
+
+func _on_moeda_2_pegou_moeda():
+	pontos+=10
+
+
+func _on_moeda_3_pegou_moeda():
+	pontos+=10
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == 'CharacterBody2D':
+		if get_tree():
+			get_tree().reload_current_scene()

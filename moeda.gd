@@ -1,6 +1,5 @@
 extends Area2D
-signal moedaPega
-
+signal pegouMoeda
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,4 +11,12 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	emit_signal("moedaPega")
+	if body.name == 'CharacterBody2D':
+		$CollisionShape2D.set_deferred("disabled", true)
+		$Sprite2D.set_deferred("visible", false)
+		$MoedaTimerRespawn.start()
+		pegouMoeda.emit()
+
+func _on_moeda_timer_respawn_timeout():
+	$CollisionShape2D.set_deferred("disabled", false)
+	$Sprite2D.set_deferred("visible", true)

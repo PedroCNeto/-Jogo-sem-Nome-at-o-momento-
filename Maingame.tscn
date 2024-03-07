@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl4ax1hqnsxgr"]
+[gd_scene load_steps=16 format=3 uid="uid://dl4ax1hqnsxgr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_garr5"]
 [ext_resource type="PackedScene" uid="uid://bfep1cwaj77fp" path="res://Enemy.tscn" id="2_wi3po"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d0okki5jjoik4" path="res://imgs/seta3.png" id="7_2sp0k"]
 [ext_resource type="Texture2D" uid="uid://ds4cjbacumyog" path="res://imgs/seta.png" id="8_sqkn5"]
 [ext_resource type="PackedScene" uid="uid://byauuukp2tbu5" path="res://moeda.tscn" id="9_waalb"]
+[ext_resource type="AudioStream" uid="uid://dknsf2x2pa0u2" path="res://sounds/BeepBox-Song (1).wav" id="10_q0i13"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebpkn"]
 size = Vector2(263, 247)
@@ -222,6 +223,11 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapEnds/Area2D"]
 position = Vector2(697.25, 1128)
 shape = SubResource("RectangleShape2D_1w67d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_q0i13")
+volume_db = 0.6
+autoplay = true
 
 [connection signal="timeout" from="Mobtimer" to="." method="_on_mobtimer_timeout"]
 [connection signal="body_entered" from="Moeda" to="Moeda" method="_on_body_entered"]

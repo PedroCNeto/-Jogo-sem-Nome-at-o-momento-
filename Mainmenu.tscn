@@ -51,7 +51,7 @@ text = "Sair"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_3hdmy")
-volume_db = 0.7
+volume_db = 0.5
 pitch_scale = 0.95
 autoplay = true
 

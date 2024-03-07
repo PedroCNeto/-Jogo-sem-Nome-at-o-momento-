@@ -78,3 +78,8 @@ func _on_area_2d_body_entered(body):
 	if body.name == 'CharacterBody2D':
 		if get_tree():
 			get_tree().reload_current_scene()
+
+
+func _on_button_pressed():
+	var mainMenu = load("res://Mainmenu.tscn")
+	get_tree().change_scene_to_packed(mainMenu)

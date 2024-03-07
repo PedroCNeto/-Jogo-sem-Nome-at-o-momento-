@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://btx8t3of6la0u"]
+
+[ext_resource type="Script" path="res://Mainmenu.gd" id="1_nqj40"]
+[ext_resource type="AudioStream" uid="uid://djnlpamvxiwio" path="res://sounds/BeepBox-Song.wav" id="2_3hdmy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 635.0
+offset_top = 360.0
+offset_right = 675.0
+offset_bottom = 400.0
+script = ExtResource("1_nqj40")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -307.0
+offset_top = -251.0
+offset_right = 336.0
+offset_bottom = -82.0
+theme_override_font_sizes/font_size = 60
+text = "Guerreiro VS Passaros
+           A aventura"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -70.0
+offset_right = 141.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="startBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Iniciar Jogo"
+
+[node name="quitBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Sair"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3hdmy")
+volume_db = 0.7
+pitch_scale = 0.95
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/startBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/quitBtn" to="." method="_on_quit_btn_pressed"]

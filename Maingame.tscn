@@ -226,7 +226,7 @@ shape = SubResource("RectangleShape2D_1w67d")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_q0i13")
-volume_db = 0.6
+volume_db = 0.3
 autoplay = true
 
 [connection signal="timeout" from="Mobtimer" to="." method="_on_mobtimer_timeout"]

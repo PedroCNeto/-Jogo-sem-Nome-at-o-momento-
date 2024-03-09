@@ -1,21 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://dooiwfdjewl7d"]
+[gd_scene load_steps=12 format=3 uid="uid://dooiwfdjewl7d"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_k5muc"]
 [ext_resource type="Texture2D" uid="uid://lrbgqrp6akr8" path="res://imgs/Projeto 1 - Guarda da Lança.png" id="2_8p8cc"]
+[ext_resource type="Texture2D" uid="uid://c5m27x1jxumrw" path="res://imgs/walking_protagonist/walking0.png" id="3_ap02l"]
+[ext_resource type="Texture2D" uid="uid://4yo4rhilnn0d" path="res://imgs/walking_protagonist/walking1.png" id="4_5j6ne"]
+[ext_resource type="Texture2D" uid="uid://duswnue5fjpol" path="res://imgs/walking_protagonist/walking2.png" id="5_pie5s"]
+[ext_resource type="Texture2D" uid="uid://csr1gqtb0l7hy" path="res://imgs/walking_protagonist/walking3.png" id="6_n5xg2"]
+[ext_resource type="Texture2D" uid="uid://yj12jwisxg3h" path="res://imgs/walking_protagonist/walking4.png" id="7_etal7"]
+[ext_resource type="Texture2D" uid="uid://b803x1r7o37u5" path="res://imgs/walking_protagonist/walking5.png" id="8_o4faf"]
+[ext_resource type="Texture2D" uid="uid://d3sdd6c4k2xem" path="res://imgs/walking_protagonist/walking6.png" id="9_833qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dxls"]
 size = Vector2(40, 85)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpxff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8p8cc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ap02l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5j6ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pie5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n5xg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_etal7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_o4faf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_833qa")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 15.0
+}]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(-27, 8)
 script = ExtResource("1_k5muc")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(24.7813, 41.0156)
-scale = Vector2(0.472168, 0.671631)
-texture = ExtResource("2_8p8cc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, 41.5)
 shape = SubResource("RectangleShape2D_3dxls")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(27.5, 40)
+scale = Vector2(0.539063, 0.6875)
+sprite_frames = SubResource("SpriteFrames_mpxff")

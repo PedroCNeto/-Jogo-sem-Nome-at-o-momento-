@@ -52,9 +52,13 @@ func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+		if is_on_floor():
+			$AnimatedSprite2D.animation = "walking"
+			$AnimatedSprite2D.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
+		$AnimatedSprite2D.animation = "default"
 	playerPhysics(delta)
 
 	jump(delta)

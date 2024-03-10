@@ -24,6 +24,20 @@ func playerPhysics(delta):
 		can_jump = 1
 		coyote_time = 0.1
 
+func animations():
+	if is_on_floor() == false and is_on_wall() == false:
+		if velocity.y > 0:
+			$AnimatedSprite2D.animation = "falling"
+		else:
+			$AnimatedSprite2D.animation = "jumping"
+	if $AnimatedSprite2D.animation == "falling" and $AnimatedSprite2D.frame == 2:
+		$AnimatedSprite2D.frame = 2
+		if is_on_floor() and $AnimatedSprite2D.frame == 2:
+			$AnimatedSprite2D.frame = 3
+	if $AnimatedSprite2D.animation == "jumping" and $AnimatedSprite2D.frame == 2:
+		$AnimatedSprite2D.frame = 2
+		
+		
 func jump(delta):
 	if can_jump > 0 or coyote_time > 0:
 		if Input.is_action_just_pressed("ui_accept"):
@@ -65,7 +79,9 @@ func _physics_process(delta):
 
 	wall_grip(delta)
 
+	animations()
 
+	print($AnimatedSprite2D.animation)
 
 	move_and_slide()
 

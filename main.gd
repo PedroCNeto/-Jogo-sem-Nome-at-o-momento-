@@ -1,5 +1,6 @@
 extends Node2D
 @export var mob_scene: PackedScene
+@export var spear_scene: PackedScene
 var pontos = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -83,3 +84,11 @@ func _on_area_2d_body_entered(body):
 func _on_button_pressed():
 	var mainMenu = load("res://Mainmenu.tscn")
 	get_tree().change_scene_to_packed(mainMenu)
+
+
+func _on_character_body_2d_spear_throw():
+	var lanca = spear_scene.instantiate()
+
+	lanca.position = $CharacterBody2D.position
+
+	add_child(lanca)

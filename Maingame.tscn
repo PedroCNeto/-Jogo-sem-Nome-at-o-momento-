@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl4ax1hqnsxgr"]
+[gd_scene load_steps=17 format=3 uid="uid://dl4ax1hqnsxgr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_garr5"]
 [ext_resource type="PackedScene" uid="uid://bfep1cwaj77fp" path="res://Enemy.tscn" id="2_wi3po"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ds4cjbacumyog" path="res://imgs/seta.png" id="8_sqkn5"]
 [ext_resource type="PackedScene" uid="uid://byauuukp2tbu5" path="res://moeda.tscn" id="9_waalb"]
 [ext_resource type="AudioStream" uid="uid://dknsf2x2pa0u2" path="res://sounds/BeepBox-Song (1).wav" id="10_q0i13"]
+[ext_resource type="PackedScene" uid="uid://q8kmlb5fxp5g" path="res://lanca.tscn" id="11_f7b4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebpkn"]
 size = Vector2(263, 247)
@@ -34,6 +35,7 @@ size = Vector2(3495.5, 155)
 position = Vector2(-41, -23)
 script = ExtResource("1_garr5")
 mob_scene = ExtResource("2_wi3po")
+spear_scene = ExtResource("11_f7b4o")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_ln2o6")]
 position = Vector2(185, 481)
@@ -229,6 +231,7 @@ stream = ExtResource("10_q0i13")
 volume_db = 0.3
 autoplay = true
 
+[connection signal="spearThrow" from="CharacterBody2D" to="." method="_on_character_body_2d_spear_throw"]
 [connection signal="timeout" from="Mobtimer" to="." method="_on_mobtimer_timeout"]
 [connection signal="body_entered" from="Moeda" to="Moeda" method="_on_body_entered"]
 [connection signal="pegouMoeda" from="Moeda" to="." method="_on_moeda_pegou_moeda"]

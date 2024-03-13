@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://q8kmlb5fxp5g"]
+
+[ext_resource type="Script" path="res://lanca.gd" id="1_gjbqh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cv7cd"]
+size = Vector2(180, 16)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mc3pd"]
+
+[node name="Lanca" type="Area2D"]
+script = ExtResource("1_gjbqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(91, 0)
+shape = SubResource("RectangleShape2D_cv7cd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(91, 0)
+scale = Vector2(181, 16)
+texture = SubResource("PlaceholderTexture2D_mc3pd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

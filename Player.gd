@@ -8,6 +8,7 @@ var coyote_time = 0
 var is_in_wall
 var jumped_while_on_wall
 signal hit
+signal spearThrow
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -24,6 +25,11 @@ func playerPhysics(delta):
 		can_jump = 1
 		coyote_time = 0.1
 
+func spearThrowing():
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		spearThrow.emit()
+		
+		
 func animations():
 	if is_on_floor() == false and is_on_wall() == false:
 		if velocity.y > 0:
@@ -82,6 +88,8 @@ func _physics_process(delta):
 	animations()
 
 	print($AnimatedSprite2D.animation)
+
+	spearThrowing()
 
 	move_and_slide()
 

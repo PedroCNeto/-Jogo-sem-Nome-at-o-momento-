@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://btx8t3of6la0u"]
+[gd_scene load_steps=8 format=3 uid="uid://btx8t3of6la0u"]
 
 [ext_resource type="Script" path="res://Mainmenu.gd" id="1_nqj40"]
 [ext_resource type="AudioStream" uid="uid://djnlpamvxiwio" path="res://sounds/BeepBox-Song.wav" id="2_3hdmy"]
+[ext_resource type="FontFile" uid="uid://bv3fc2ipepih7" path="res://fonts/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="2_fm1qk"]
+[ext_resource type="Texture2D" uid="uid://dl6bwk8aakeij" path="res://imgs/lança.png" id="4_nsi06"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mic1b"]
+shadow_size = 2
+
+[sub_resource type="Theme" id="Theme_x2yy6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34nbe"]
+shadow_size = 2
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,17 +21,6 @@ offset_top = 360.0
 offset_right = 675.0
 offset_bottom = 400.0
 script = ExtResource("1_nqj40")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = -307.0
-offset_top = -251.0
-offset_right = 336.0
-offset_bottom = -82.0
-theme_override_font_sizes/font_size = 60
-text = "Guerreiro VS Passaros
-           A aventura"
-vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -41,19 +40,49 @@ metadata/_edit_group_ = true
 
 [node name="startBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_fm1qk")
 theme_override_font_sizes/font_size = 50
-text = "Iniciar Jogo"
+theme_override_styles/hover = SubResource("StyleBoxFlat_mic1b")
+text = "Start Game"
 
 [node name="quitBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_x2yy6")
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_fm1qk")
 theme_override_font_sizes/font_size = 40
-text = "Sair"
+theme_override_styles/hover = SubResource("StyleBoxFlat_34nbe")
+text = "Quit"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_3hdmy")
 volume_db = 0.5
 pitch_scale = 0.95
 autoplay = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(4.99994, -230)
+rotation = 3.14159
+scale = Vector2(20.344, 7.188)
+texture = ExtResource("4_nsi06")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(34, -111)
+scale = Vector2(20.3125, 7.1875)
+texture = ExtResource("4_nsi06")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -307.0
+offset_top = -251.0
+offset_right = 336.0
+offset_bottom = -82.0
+theme_override_fonts/font = ExtResource("2_fm1qk")
+theme_override_font_sizes/font_size = 90
+text = "SpearBird
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/startBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/quitBtn" to="." method="_on_quit_btn_pressed"]

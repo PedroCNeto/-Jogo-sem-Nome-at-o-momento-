@@ -32,15 +32,26 @@ func spearThrowing():
 		
 func animations():
 	if is_on_floor() == false and is_on_wall() == false:
-		if velocity.y > 0:
+		if velocity.y > 0 and Points.lancaState == true:
 			$AnimatedSprite2D.animation = "falling"
-		else:
+		elif velocity.y > 0 and Points.lancaState == false:
+			$AnimatedSprite2D.animation = "falling_noSpear"
+		elif velocity.y < 0 and Points.lancaState == true:
 			$AnimatedSprite2D.animation = "jumping"
+		elif velocity.y < 0 and Points.lancaState == false:
+			$AnimatedSprite2D.animation = "jumping_noSpear"
+			
 	if $AnimatedSprite2D.animation == "falling" and $AnimatedSprite2D.frame == 2:
 		$AnimatedSprite2D.frame = 2
 		if is_on_floor() and $AnimatedSprite2D.frame == 2:
 			$AnimatedSprite2D.frame = 3
+	if $AnimatedSprite2D.animation == "falling_noSpear" and $AnimatedSprite2D.frame == 2:
+		$AnimatedSprite2D.frame = 2
+		if is_on_floor() and $AnimatedSprite2D.frame == 2:
+			$AnimatedSprite2D.frame = 3
 	if $AnimatedSprite2D.animation == "jumping" and $AnimatedSprite2D.frame == 2:
+		$AnimatedSprite2D.frame = 2
+	if $AnimatedSprite2D.animation == "jumping_noSpear" and $AnimatedSprite2D.frame == 2:
 		$AnimatedSprite2D.frame = 2
 		
 		
@@ -74,11 +85,17 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 		if is_on_floor():
-			$AnimatedSprite2D.animation = "walking"
+			if Points.lancaState == true:
+				$AnimatedSprite2D.animation = "walking"
+			else:
+				$AnimatedSprite2D.animation = "walking_noSpear"
 			$AnimatedSprite2D.play()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		$AnimatedSprite2D.animation = "default"
+		if Points.lancaState == true:
+			$AnimatedSprite2D.animation = "default"
+		else:
+			$AnimatedSprite2D.animation = "default_noSpear"
 	playerPhysics(delta)
 
 	jump(delta)

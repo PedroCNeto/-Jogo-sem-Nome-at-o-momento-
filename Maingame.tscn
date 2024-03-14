@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl4ax1hqnsxgr"]
+[gd_scene load_steps=19 format=3 uid="uid://dl4ax1hqnsxgr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_garr5"]
 [ext_resource type="PackedScene" uid="uid://bfep1cwaj77fp" path="res://Enemy.tscn" id="2_wi3po"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://ds4cjbacumyog" path="res://imgs/seta.png" id="8_sqkn5"]
 [ext_resource type="PackedScene" uid="uid://byauuukp2tbu5" path="res://moeda.tscn" id="9_waalb"]
 [ext_resource type="AudioStream" uid="uid://dknsf2x2pa0u2" path="res://sounds/BeepBox-Song (1).wav" id="10_q0i13"]
+[ext_resource type="FontFile" uid="uid://dwmcl437mfih4" path="res://fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="10_qco75"]
+[ext_resource type="FontFile" uid="uid://bv3fc2ipepih7" path="res://fonts/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="10_u0beh"]
+[ext_resource type="PackedScene" uid="uid://q8kmlb5fxp5g" path="res://lanca.tscn" id="11_6p8cy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebpkn"]
 size = Vector2(263, 247)
@@ -43,9 +46,6 @@ position = Vector2(21, 31)
 ignore_rotation = false
 zoom = Vector2(1.2, 1.2)
 limit_smoothed = true
-
-[node name="LancaTimer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(12, 37)
@@ -187,13 +187,13 @@ wait_time = 0.5
 
 [node name="Enemy" parent="." instance=ExtResource("2_wi3po")]
 
-[node name="Moeda" parent="." instance=ExtResource("9_waalb")]
+[node name="Moeda" parent="." groups=["coins"] instance=ExtResource("9_waalb")]
 position = Vector2(288, 502)
 
-[node name="Moeda2" parent="." instance=ExtResource("9_waalb")]
+[node name="Moeda2" parent="." groups=["coins"] instance=ExtResource("9_waalb")]
 position = Vector2(992, 487)
 
-[node name="Moeda3" parent="." instance=ExtResource("9_waalb")]
+[node name="Moeda3" parent="." groups=["coins"] instance=ExtResource("9_waalb")]
 position = Vector2(602, 530)
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -205,6 +205,7 @@ offset_left = -53.0
 offset_top = -13.0
 offset_right = 59.0
 offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("10_qco75")
 label_settings = SubResource("LabelSettings_vhy0y")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -214,7 +215,8 @@ offset_left = -628.0
 offset_top = 4.0
 offset_right = -464.0
 offset_bottom = 35.0
-text = "Voltar ao menu"
+theme_override_fonts/font = ExtResource("10_u0beh")
+text = "Go back to menu"
 
 [node name="GameTime" type="Timer" parent="."]
 autostart = true
@@ -232,8 +234,9 @@ stream = ExtResource("10_q0i13")
 volume_db = 0.3
 autoplay = true
 
+[node name="Lanca" parent="." instance=ExtResource("11_6p8cy")]
+
 [connection signal="spearThrow" from="CharacterBody2D" to="." method="_on_character_body_2d_spear_throw"]
-[connection signal="timeout" from="LancaTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Mobtimer" to="." method="_on_mobtimer_timeout"]
 [connection signal="body_entered" from="Moeda" to="Moeda" method="_on_body_entered"]
 [connection signal="pegouMoeda" from="Moeda" to="." method="_on_moeda_pegou_moeda"]
@@ -244,3 +247,4 @@ autoplay = true
 [connection signal="pressed" from="HUD/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="GameTime" to="." method="_on_game_time_timeout"]
 [connection signal="body_entered" from="MapEnds/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="activeSpear" from="Lanca" to="." method="_on_lanca_active_spear"]

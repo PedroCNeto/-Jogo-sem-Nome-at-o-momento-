@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Projeto 3 - Mecanicas 2D"
+config/name="SpearBird"
 run/main_scene="res://Mainmenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Points="*res://scripts/points.gd"
 
 [debug]
 

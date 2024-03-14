@@ -3,32 +3,31 @@ extends Node2D
 
 var lanca = preload("res://lanca.tscn")
 
-var pontos = 0
-var lancaThrow = true
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Lanca.visible = false
 	$Mobtimer.start()
 	$CharacterBody2D/Camera2D.align()
 
 
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$HUD/Score.text = "Pontos: " + str(pontos) 
+	$HUD/Score.text = "Points: " + str(Points.points) 
 	
 	for index in $CharacterBody2D.get_slide_collision_count():
 		var collision = $CharacterBody2D.get_slide_collision(index)	
 		var body = collision.get_collider()
 		if body is RigidBody2D:
 			if get_tree():
-				get_tree().reload_current_scene()
+				var restartMenu = load("res://restartMenu.tscn")
+				get_tree().change_scene_to_packed(restartMenu)
+
 
 
 
 func ativarLanca():
-	lancaThrow = true
+	Points.lancaState = true
 
 func _on_mobtimer_timeout():
 
@@ -59,50 +58,40 @@ func _on_mobtimer_timeout():
 	if $Mobtimer.wait_time > 0.01:
 		$Mobtimer.wait_time = $Mobtimer.wait_time - ($Mobtimer.wait_time * 0.01)
 
-
-
-
-
-
 func _on_game_time_timeout():
-	pontos+=1
+	Points.points+=1
 
 
 func _on_moeda_pegou_moeda():
-	pontos+=10
+	Points.points+=10
 
 
 func _on_moeda_2_pegou_moeda():
-	pontos+=10
+	Points.points+=10
 
 
 func _on_moeda_3_pegou_moeda():
-	pontos+=10
+	Points.points+=10
 
 
 func _on_area_2d_body_entered(body):
 	if body.name == 'CharacterBody2D':
 		if get_tree():
-			get_tree().reload_current_scene()
+			var restartMenu = load("res://restartMenu.tscn")
+			get_tree().change_scene_to_packed(restartMenu)
 
 
 func _on_button_pressed():
 	var mainMenu = load("res://Mainmenu.tscn")
 	get_tree().change_scene_to_packed(mainMenu)
-
+	Points.points = 0
 
 func _on_character_body_2d_spear_throw():
-	if lancaThrow == true:
-		lancaThrow = false
-		
-		var lanca_instance = lanca.instantiate()
-		lanca_instance.position = $CharacterBody2D/SpawnLancas.global_position
-
-		get_tree().get_root().add_child(lanca_instance)
-		$LancaTimer.start()
+	if Points.lancaState == true:
+		$Lanca.visible = true
+		$Lanca.position = $CharacterBody2D/SpawnLancas.global_position
+		Points.lancaState = false
 
 
-
-
-func _on_timer_timeout():
-	lancaThrow = true
+func _on_lanca_active_spear():
+	Points.lancaState = true

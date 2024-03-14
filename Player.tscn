@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dooiwfdjewl7d"]
+[gd_scene load_steps=30 format=3 uid="uid://dooiwfdjewl7d"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_k5muc"]
 [ext_resource type="Texture2D" uid="uid://lrbgqrp6akr8" path="res://imgs/Projeto 1 - Guarda da Lança.png" id="2_8p8cc"]
 [ext_resource type="Texture2D" uid="uid://c5m27x1jxumrw" path="res://imgs/walking_protagonist/walking0.png" id="3_ap02l"]
+[ext_resource type="Texture2D" uid="uid://dgivalkaxg571" path="res://imgs/falling_noSpear/default_noSpear.png" id="3_b7ahg"]
 [ext_resource type="Texture2D" uid="uid://3pbg6mn6gv5r" path="res://imgs/falling_protagonist/jumpFall0.png" id="3_hdq8r"]
 [ext_resource type="Texture2D" uid="uid://4yo4rhilnn0d" path="res://imgs/walking_protagonist/walking1.png" id="4_5j6ne"]
 [ext_resource type="Texture2D" uid="uid://dm380gqnrfla" path="res://imgs/falling_protagonist/jumpFall1.png" id="4_8hc0u"]
@@ -13,9 +14,19 @@
 [ext_resource type="Texture2D" uid="uid://yj12jwisxg3h" path="res://imgs/walking_protagonist/walking4.png" id="7_etal7"]
 [ext_resource type="Texture2D" uid="uid://cqpyxyc5e76si" path="res://imgs/jumping_protagonist/jumpFall0.png" id="7_yxuas"]
 [ext_resource type="Texture2D" uid="uid://qia2jbmlanlh" path="res://imgs/jumping_protagonist/jumpFall1.png" id="8_2mwsq"]
+[ext_resource type="Texture2D" uid="uid://doibcg1hoeh4c" path="res://imgs/falling_noSpear/jumping_noSpear2.png" id="8_e7jrk"]
 [ext_resource type="Texture2D" uid="uid://b803x1r7o37u5" path="res://imgs/walking_protagonist/walking5.png" id="8_o4faf"]
 [ext_resource type="Texture2D" uid="uid://sgjtll6shbvr" path="res://imgs/jumping_protagonist/jumpFall2.png" id="9_6fe5i"]
 [ext_resource type="Texture2D" uid="uid://d3sdd6c4k2xem" path="res://imgs/walking_protagonist/walking6.png" id="9_833qa"]
+[ext_resource type="Texture2D" uid="uid://bpt1x5el2cofu" path="res://imgs/falling_noSpear/jumping_noSpear1.png" id="9_ieo2a"]
+[ext_resource type="Texture2D" uid="uid://b0mowr0iix7gy" path="res://imgs/falling_noSpear/jumping_noSpear0.png" id="10_41pcf"]
+[ext_resource type="Texture2D" uid="uid://8x8lb23fo255" path="res://imgs/walking_noSpear/walking_noSpear0.png" id="17_08h5x"]
+[ext_resource type="Texture2D" uid="uid://d0rujqmhdhjnp" path="res://imgs/walking_noSpear/walking_noSpear1.png" id="18_uoep3"]
+[ext_resource type="Texture2D" uid="uid://6v88sj7csmkf" path="res://imgs/walking_noSpear/walking_noSpear2.png" id="19_pbjbi"]
+[ext_resource type="Texture2D" uid="uid://brn7lrora4451" path="res://imgs/walking_noSpear/walking_noSpear3.png" id="20_25jxh"]
+[ext_resource type="Texture2D" uid="uid://ddrh8cbeeo85v" path="res://imgs/walking_noSpear/walking_noSpear4.png" id="21_ydv7v"]
+[ext_resource type="Texture2D" uid="uid://b55la3fbx6unr" path="res://imgs/walking_noSpear/walking_noSpear5.png" id="22_kcy36"]
+[ext_resource type="Texture2D" uid="uid://q1lknab7b08t" path="res://imgs/walking_noSpear/walking_noSpear6.png" id="23_cni6g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dxls"]
 size = Vector2(40, 85)
@@ -28,6 +39,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b7ahg")
+}],
+"loop": true,
+"name": &"default_noSpear",
 "speed": 5.0
 }, {
 "frames": [{
@@ -49,6 +68,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("8_e7jrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ieo2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_41pcf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b7ahg")
+}],
+"loop": true,
+"name": &"falling_noSpear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("7_yxuas")
 }, {
 "duration": 1.0,
@@ -60,6 +96,20 @@ animations = [{
 "loop": true,
 "name": &"jumping",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_41pcf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ieo2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_e7jrk")
+}],
+"loop": true,
+"name": &"jumping_noSpear",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -86,6 +136,32 @@ animations = [{
 "loop": true,
 "name": &"walking",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_08h5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_uoep3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pbjbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_25jxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ydv7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_kcy36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_cni6g")
+}],
+"loop": true,
+"name": &"walking_noSpear",
+"speed": 5.0
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
@@ -99,8 +175,7 @@ shape = SubResource("RectangleShape2D_3dxls")
 position = Vector2(21, 27)
 scale = Vector2(0.539063, 0.6875)
 sprite_frames = SubResource("SpriteFrames_mpxff")
-animation = &"falling"
-frame_progress = 0.0521409
+animation = &"falling_noSpear"
 offset = Vector2(12.058, 18.9091)
 
 [node name="SpawnLancas" type="Marker2D" parent="."]

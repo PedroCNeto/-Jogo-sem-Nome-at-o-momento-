@@ -87,7 +87,7 @@ func _physics_process(delta):
 
 	animations()
 
-	print($AnimatedSprite2D.animation)
+
 
 	spearThrowing()
 

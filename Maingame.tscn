@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dl4ax1hqnsxgr"]
+[gd_scene load_steps=16 format=3 uid="uid://dl4ax1hqnsxgr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_garr5"]
 [ext_resource type="PackedScene" uid="uid://bfep1cwaj77fp" path="res://Enemy.tscn" id="2_wi3po"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://ds4cjbacumyog" path="res://imgs/seta.png" id="8_sqkn5"]
 [ext_resource type="PackedScene" uid="uid://byauuukp2tbu5" path="res://moeda.tscn" id="9_waalb"]
 [ext_resource type="AudioStream" uid="uid://dknsf2x2pa0u2" path="res://sounds/BeepBox-Song (1).wav" id="10_q0i13"]
-[ext_resource type="PackedScene" uid="uid://q8kmlb5fxp5g" path="res://lanca.tscn" id="11_f7b4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebpkn"]
 size = Vector2(263, 247)
@@ -20,9 +19,9 @@ size = Vector2(54, 374)
 
 [sub_resource type="Curve2D" id="Curve2D_l7mf5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -910.472, -103.407, 0, 0, 0, 0, -920.38, 1021.84, 0, 0, 0, 0, 2122.29, 1026.58, 0, 0, 0, 0, 2131.3, 481.108, 0, 0, 0, 0, 2132.2, -95.7159, 0, 0, 0, 0, -879.847, -80.3339, 0, 0, 0, 0, -898.762, -95.7159, 0, 0, 0, 0, -856.428, -88.0249, 0, 0, 0, 0, -880.748, -90.3914, 0, 0, 0, 0, -847.421, -67.3184, 0, 0, 0, 0, -881.648, -92.7578)
+"points": PackedVector2Array(0, 0, 0, 0, -933.891, -335.32, 0, 0, 0, 0, -920.38, 1021.84, 0, 0, 0, 0, 2332.16, 1028.94, 0, 0, 0, 0, 2309.64, 483.474, 0, 0, 0, 0, 2302.43, -312.839, 0, 0, 0, 0, -931.189, -330.587)
 }
-point_count = 11
+point_count = 6
 
 [sub_resource type="LabelSettings" id="LabelSettings_vhy0y"]
 font_size = 32
@@ -35,16 +34,18 @@ size = Vector2(3495.5, 155)
 position = Vector2(-41, -23)
 script = ExtResource("1_garr5")
 mob_scene = ExtResource("2_wi3po")
-spear_scene = ExtResource("11_f7b4o")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_ln2o6")]
-position = Vector2(185, 481)
+position = Vector2(171, 446)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(21, 31)
 ignore_rotation = false
 zoom = Vector2(1.2, 1.2)
 limit_smoothed = true
+
+[node name="LancaTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(12, 37)
@@ -178,8 +179,8 @@ scale = Vector2(1.11021, 1.69029)
 curve = SubResource("Curve2D_l7mf5")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-910.472, -103.407)
-rotation = 1.5796
+position = Vector2(-933.891, -335.32)
+rotation = 1.56084
 
 [node name="Mobtimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -232,6 +233,7 @@ volume_db = 0.3
 autoplay = true
 
 [connection signal="spearThrow" from="CharacterBody2D" to="." method="_on_character_body_2d_spear_throw"]
+[connection signal="timeout" from="LancaTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Mobtimer" to="." method="_on_mobtimer_timeout"]
 [connection signal="body_entered" from="Moeda" to="Moeda" method="_on_body_entered"]
 [connection signal="pegouMoeda" from="Moeda" to="." method="_on_moeda_pegou_moeda"]

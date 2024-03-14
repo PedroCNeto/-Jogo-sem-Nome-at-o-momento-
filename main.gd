@@ -1,12 +1,16 @@
 extends Node2D
 @export var mob_scene: PackedScene
-@export var spear_scene: PackedScene
+
+var lanca = preload("res://lanca.tscn")
+
 var pontos = 0
+var lancaThrow = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Mobtimer.start()
 	$CharacterBody2D/Camera2D.align()
+
 
 
 
@@ -23,7 +27,8 @@ func _process(delta):
 
 
 
-
+func ativarLanca():
+	lancaThrow = true
 
 func _on_mobtimer_timeout():
 
@@ -87,8 +92,17 @@ func _on_button_pressed():
 
 
 func _on_character_body_2d_spear_throw():
-	var lanca = spear_scene.instantiate()
+	if lancaThrow == true:
+		lancaThrow = false
+		
+		var lanca_instance = lanca.instantiate()
+		lanca_instance.position = $CharacterBody2D/SpawnLancas.global_position
 
-	lanca.position = $CharacterBody2D.position
+		get_tree().get_root().add_child(lanca_instance)
+		$LancaTimer.start()
 
-	add_child(lanca)
+
+
+
+func _on_timer_timeout():
+	lancaThrow = true

@@ -89,7 +89,6 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(-27, 8)
 script = ExtResource("1_k5muc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -97,8 +96,12 @@ position = Vector2(20, 41.5)
 shape = SubResource("RectangleShape2D_3dxls")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(27.5, 40)
+position = Vector2(21, 27)
 scale = Vector2(0.539063, 0.6875)
 sprite_frames = SubResource("SpriteFrames_mpxff")
 animation = &"falling"
 frame_progress = 0.0521409
+offset = Vector2(12.058, 18.9091)
+
+[node name="SpawnLancas" type="Marker2D" parent="."]
+position = Vector2(56, 52)

@@ -14,7 +14,7 @@ func _process(delta):
 func _on_start_btn_pressed():
 	var mainGame = load("res://Maingame.tscn")
 	get_tree().change_scene_to_packed(mainGame)
-
+	Points.lancaState = true
 
 func _on_quit_btn_pressed():
 	get_tree().quit()

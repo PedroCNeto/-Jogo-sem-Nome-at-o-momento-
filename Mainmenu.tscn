@@ -73,6 +73,7 @@ scale = Vector2(20.3125, 7.1875)
 texture = ExtResource("4_nsi06")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = -307.0
 offset_top = -251.0
 offset_right = 336.0

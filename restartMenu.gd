@@ -21,3 +21,4 @@ func _on_restart_btn_pressed():
 	var mainGame = load("res://Maingame.tscn")
 	get_tree().change_scene_to_packed(mainGame)
 	Points.points = 0
+	Points.lancaState = true
